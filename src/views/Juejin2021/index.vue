@@ -143,6 +143,10 @@ const generateMyTitle = async () => {
   }
 
   const option = nameType.value == nameTypes.INNER ? titleOptions.find(t => t.id == chosenTitle.value) : { name: chosenTitleCN.value, icon: titleOptions[0].icon }
+  if (option.name.length > 4 || option.name.length < 3) {
+    ElMessage.warning('不行啊老哥，我只兼容了 3-4 个字的称号')
+    return
+  }
   const img = await loadImage(avatarPath.value)
   const width = img.width
   const height = img.height
