@@ -2,7 +2,7 @@ let Client = require('ssh2-sftp-client');
 let path = require('path')
 let client = new Client();
 const config = require('../.auth/ftp.json')
-const localPath = path.resolve(__dirname, '../blog/.vuepress/dist')
+const localPath = path.resolve(__dirname, './dist')
 const remotePath = '/usr/share/nginx/juejin-2021'
 const main = async () => {
   try {
