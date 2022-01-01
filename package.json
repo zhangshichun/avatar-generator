@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "node ./scripts/deploy.js"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -24,6 +25,7 @@
     "eslint-plugin-vue": "^7.0.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "ssh2-sftp-client": "^7.1.0"
   }
 }
