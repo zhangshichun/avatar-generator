@@ -1,18 +1,50 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <div class="header">
+      <div class="header-text">
+        <div>你好啊 </div>
+        <div>我是【春哥】，一个卑微的前端。</div>
+        <div>这是我的【掘金首页】，欢迎关注：<a href="https://juejin.cn/user/1714893870865303" target="__blank">点我点我！</a></div>
+        <div>这是我的【公众号】,欢迎关注：</div>
+        <div class="wechat"></div>
+      </div>
+    </div>
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+<style lang="scss" scoped>
+.container {
+  width: 1000px;
+  // background-color: #eeeeee;
+  margin: auto;
+  background-color: #e3e3e3;
+  padding: 10px;
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    &-origin-avatar {
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: 50% 50%;
+      border-radius: 50px;
+    }
+    &-user-name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    &-text {
+      text-align: left;
+      font-size: 18px;
+      margin-left: 20px;
+    }
+  }
+  .wechat {
+    height: 100px;
+    width: 300px;
+    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/wechat-white.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 }
-</script>
+</style>
