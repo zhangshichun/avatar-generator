@@ -42,7 +42,7 @@
   .wechat {
     height: 100px;
     width: 300px;
-    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/wechat-white.png');
+    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/2022-wechat.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }

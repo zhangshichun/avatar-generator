@@ -37,7 +37,9 @@
       <div class="main-content-line">
         <div>四、右键将生成的图片保存，并作为掘金头像使用</div>
       </div>
-      <canvas ref="canvasRef" class="my-canvas" :style="{ border: '1px solid black' }" :width="canvasWidth" :height="canvasHeight"></canvas>
+      <div class="main-content-line">
+        <canvas ref="canvasRef" class="my-canvas" :style="{ border: '1px solid black' }" :width="canvasWidth" :height="canvasHeight"></canvas>
+      </div>
     </div>
   </div>
 </template>
@@ -271,7 +273,7 @@ const drawLine1 = async ({ ctx, name, icon }) => {
   .wechat {
     height: 100px;
     width: 300px;
-    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/wechat-white.png');
+    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/2022-wechat.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
