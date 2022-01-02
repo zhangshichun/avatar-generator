@@ -119,16 +119,16 @@ const COEFFICIENT_OF_TOP = 0.02
 // 头像边框的宽度
 const AVATAR_CYCLE_BORDER_WIDTH = 10
 // 文本头部的Y坐标
-const TEXT_Y = canvasHeight*(COEFFICIENT_OF_R) + AVATAR_CYCLE_BORDER_WIDTH
+const TEXT_Y = canvasHeight*(COEFFICIENT_OF_R) + AVATAR_CYCLE_BORDER_WIDTH*1.2
 // 一些可能会伴随标题字数长度变化而变化的配置
 const text_config_map = {
   3: {
     textPrefixSpaceCount: 3, // 文本居中，前面要前置的空格数量
-    iconToCenterPx: 70 // icon距离中间的距离
+    iconToCenterPx: 75 // icon距离中间的距离
   },
   4: {
     textPrefixSpaceCount: 3,
-    iconToCenterPx: 80
+    iconToCenterPx: 90
   }
 }
 
