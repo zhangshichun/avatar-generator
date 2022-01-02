@@ -5,9 +5,9 @@
       <div class="header-text">
         <div>你好啊，<span class="header-user-name">{{ userName }}</span> </div>
         <div>我是【春哥】，一个卑微的前端。</div>
-        <div>这是我的【掘金首页】，欢迎关注：<a href="https://juejin.cn/user/1714893870865303" target="__blank">点我点我！</a></div>
+        <div>这是我的【掘金首页】，欢迎关注：<a href="https://juejin.cn/user/1714893870865303/posts" target="__blank">点我点我！</a></div>
         <div>这是我的【公众号】,欢迎关注：</div>
-        <div class="wechat"></div>
+        <img class="wechat" src="https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/2022-wechat.png"/>
       </div>
     </div>
     <div class="main">
@@ -35,7 +35,8 @@
         三、<el-button type="primary" class="main-submit-btn" @click="generateMyTitle">生成我的称号</el-button>
       </div>
       <div class="main-content-line">
-        <div>四、右键将生成的图片保存，并作为掘金头像使用</div>
+        <div>四、右键将生成的图片保存，并作为掘金头像使用。</div>
+        <a v-if="dataUrl" download="avatar.png" :href="dataUrl">下载头像</a>
       </div>
       <div class="main-content-line">
         <canvas ref="canvasRef" class="my-canvas" :style="{ border: '1px solid black' }" :width="canvasWidth" :height="canvasHeight"></canvas>
@@ -47,7 +48,7 @@
 import { nextTick, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import request from '@/utils/request'
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus';
 
 /**
  * 获取并解析用户基本信息
@@ -131,20 +132,21 @@ const text_config_map = {
 }
 
 const canvasRef = ref(null)
+const dataUrl = ref(null)
 
 const generateMyTitle = async () => {
   if (nameType.value == nameTypes.INNER &&  chosenTitle.value == null) {
-    ElMessage.warning('不选称号，我生成个寂寞~~')
+    ElMessageBox.alert('老哥，不选称号，我生成个寂寞~~')
     return
   }
   if (nameType.value == nameTypes.CUSTOM && !nameTypesCN) {
-    ElMessage.warning('老哥，称号不能为空')
+    ElMessageBox.alert('老哥，称号不能为空')
     return
   }
 
   const option = nameType.value == nameTypes.INNER ? titleOptions.find(t => t.id == chosenTitle.value) : { name: chosenTitleCN.value, icon: titleOptions[0].icon }
   if (option.name.length > 4 || option.name.length < 3) {
-    ElMessage.warning('不行啊老哥，我只兼容了 3-4 个字的称号')
+    ElMessageBox.alert('不行啊老哥，我只兼容了 3-4 个字的称号')
     return
   }
   const img = await loadImage(avatarPath.value)
@@ -153,15 +155,16 @@ const generateMyTitle = async () => {
   await nextTick()
   const ctx = initCtx(canvasRef.value)
   fillBackground({ ctx })
-  
   clipCycle({ ctx , width, height, img })
   drawAvatarCycle({ ctx })
-  drawLine1({ ctx , width, height, ...option })
+  await drawLine1({ ctx , width, height, ...option })
+  dataUrl.value = canvasRef.value.toDataURL()
 }
 
 const loadImage = (path) => {
   return new Promise((resolve) => {
     let img = new window.Image();
+    img.setAttribute("crossOrigin",'anonymous')
     img.src = path;
     img.onload = () => {
       resolve(img)
@@ -233,7 +236,7 @@ const drawLine1 = async ({ ctx, name, icon }) => {
 </script>
 <style lang="scss" scoped>
 .container {
-  width: 1000px;
+  width: 600px;
   // background-color: #eeeeee;
   margin: auto;
   background-color: #e3e3e3;
@@ -276,10 +279,6 @@ const drawLine1 = async ({ ctx, name, icon }) => {
   }
   .wechat {
     height: 100px;
-    width: 300px;
-    background-image: url('https://cdn.jsdelivr.net/gh/zhangshichun/blog-images/imgs/2022-wechat.png');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
   }
 }
 </style>
