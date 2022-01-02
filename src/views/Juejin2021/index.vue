@@ -38,6 +38,7 @@
         <div>四、右键将生成的图片保存，并作为掘金头像使用。</div>
         <a v-if="dataUrl" download="avatar.png" :href="dataUrl">下载头像</a>
       </div>
+      <div class="main-content-line wechat-warning">[注意：已知微信内置浏览器无法下载，请点击右上角“在浏览器中打开”]</div>
       <div class="main-content-line">
         <canvas ref="canvasRef" class="my-canvas" :style="{ border: '1px solid black' }" :width="canvasWidth" :height="canvasHeight"></canvas>
       </div>
@@ -279,6 +280,10 @@ const drawLine1 = async ({ ctx, name, icon }) => {
   }
   .wechat {
     height: 100px;
+  }
+
+  .wechat-warning {
+    color: #999
   }
 }
 </style>
